@@ -146,9 +146,30 @@
 
 ### 查看可交互原型
 
-1. 打开文件夹 `ui_kits/mini-program/`
-2. 双击 `index.html` 用浏览器打开
-3. 在左侧导航栏点击不同页面进行预览
+⚠️ **注意**：原型使用 React + Babel，需要本地服务器运行，直接双击打开会显示空白页面。
+
+#### 方法 1：VS Code Live Server（推荐）
+
+1. 安装 VS Code 扩展 **Live Server**（ritwickdey.liveserver）
+2. 右键点击 `ui_kits/mini-program/index.html` → **"Open with Live Server"**
+
+#### 方法 2：Python 临时服务器
+
+```bash
+cd ui_kits/mini-program
+python -m http.server 8080
+```
+然后浏览器访问 `http://localhost:8080`
+
+#### 方法 3：Node.js http-server
+
+```bash
+npx http-server ui_kits/mini-program -p 8080 -o
+```
+
+---
+
+启动后，在左侧导航栏点击不同页面进行预览：
 
 原型包含 **16 个高保真页面**，支持点击交互：
 - **首页** — 四大板块导航
