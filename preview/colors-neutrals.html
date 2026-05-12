@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body{margin:0;padding:18px;background:#fff;font-family:var(--font-sans);color:var(--fg-1)}
+  .row{display:flex;gap:8px;flex-wrap:wrap}
+  .sw{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+  .chip{height:48px;border-radius:8px;border:1px solid var(--line)}
+  .name{font-size:11px;font-weight:600}
+  .hex{font-size:10px;color:var(--fg-3);font-family:var(--font-mono)}
+  h4{font-size:12px;margin:0 0 8px;color:var(--fg-2);text-transform:uppercase;letter-spacing:.5px}
+</style></head><body>
+<h4>Ink (foreground)</h4>
+<div class="row">
+  <div class="sw"><div class="chip" style="background:#0F1F3A"></div><div class="name">fg-1</div><div class="hex">#0F1F3A</div></div>
+  <div class="sw"><div class="chip" style="background:#324563"></div><div class="name">fg-2</div><div class="hex">#324563</div></div>
+  <div class="sw"><div class="chip" style="background:#6B7C97"></div><div class="name">fg-3</div><div class="hex">#6B7C97</div></div>
+  <div class="sw"><div class="chip" style="background:#94A3B8"></div><div class="name">fg-4</div><div class="hex">#94A3B8</div></div>
+  <div class="sw"><div class="chip" style="background:#C4D1E4"></div><div class="name">fg-5</div><div class="hex">#C4D1E4</div></div>
+</div>
+<div style="height:14px"></div>
+<h4>Surface · Background</h4>
+<div class="row">
+  <div class="sw"><div class="chip" style="background:#FFFFFF"></div><div class="name">card</div><div class="hex">#FFFFFF</div></div>
+  <div class="sw"><div class="chip" style="background:#F1F5FB"></div><div class="name">sunken</div><div class="hex">#F1F5FB</div></div>
+  <div class="sw"><div class="chip" style="background:#F4F7FC"></div><div class="name">bg-app</div><div class="hex">#F4F7FC</div></div>
+  <div class="sw"><div class="chip" style="background:#EEF2F8"></div><div class="name">bg-stage</div><div class="hex">#EEF2F8</div></div>
+  <div class="sw"><div class="chip" style="background:#E8EEFA"></div><div class="name">bg-page</div><div class="hex">#E8EEFA</div></div>
+  <div class="sw"><div class="chip" style="background:#D7E3FA"></div><div class="name">bg-tint</div><div class="hex">#D7E3FA</div></div>
+</div>
+</body></html>

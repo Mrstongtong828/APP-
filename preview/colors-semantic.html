@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body{margin:0;padding:18px;background:#fff;font-family:var(--font-sans)}
+  .row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .pair{flex:1;min-width:0;border-radius:10px;overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column}
+  .swatch{height:42px}
+  .meta{padding:7px 10px;font-size:11.5px;display:flex;justify-content:space-between;align-items:center;background:#fff}
+  .meta b{font-weight:600}
+  .meta .hx{font-family:var(--font-mono);color:var(--fg-3);font-size:10px}
+  .tag{display:inline-flex;align-items:center;padding:3px 8px;border-radius:99px;font-size:11px;font-weight:500}
+</style></head><body>
+<div class="row">
+  <div class="pair"><div class="swatch" style="background:#10B981"></div><div class="meta"><b>ok</b><span class="hx">#10B981</span></div></div>
+  <div class="pair"><div class="swatch" style="background:#DCFCE7"></div><div class="meta"><b>ok-soft</b><span class="hx">#DCFCE7</span></div></div>
+</div>
+<div class="row">
+  <div class="pair"><div class="swatch" style="background:#F59E0B"></div><div class="meta"><b>warn</b><span class="hx">#F59E0B</span></div></div>
+  <div class="pair"><div class="swatch" style="background:#FEF3C7"></div><div class="meta"><b>warn-soft</b><span class="hx">#FEF3C7</span></div></div>
+</div>
+<div class="row">
+  <div class="pair"><div class="swatch" style="background:#E5484D"></div><div class="meta"><b>danger</b><span class="hx">#E5484D</span></div></div>
+  <div class="pair"><div class="swatch" style="background:#FEE2E2"></div><div class="meta"><b>danger-soft</b><span class="hx">#FEE2E2</span></div></div>
+</div>
+<div class="row" style="margin-top:6px">
+  <span class="tag" style="background:#DCFCE7;color:#047857">已完成</span>
+  <span class="tag" style="background:#FEF3C7;color:#92400E">待开具</span>
+  <span class="tag" style="background:#FEE2E2;color:#B91C1C">已逾期</span>
+  <span class="tag" style="background:#E0F2FE;color:#0369A1">维修中</span>
+</div>
+</body></html>

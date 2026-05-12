@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"/>
+<title>CICADA 思科达 · 产品与售后介绍</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body{margin:0;background:#0F1F3A;font-family:var(--font-sans);color:var(--fg-1)}
+  deck-stage > section{
+    width:1920px;height:1080px;background:#fff;position:relative;overflow:hidden;
+    display:flex;flex-direction:column;
+  }
+  /* shared classes */
+  .pad{padding:96px 120px}
+  .padlg{padding:120px 140px}
+  .eyebrow{font-size:24px;font-weight:600;letter-spacing:6px;color:var(--brand);text-transform:uppercase;display:flex;align-items:center;gap:18px}
+  .eyebrow::before{content:'';width:48px;height:3px;background:var(--brand);border-radius:2px}
+  h1.big{font-size:104px;font-weight:800;line-height:1.05;letter-spacing:-2px;color:var(--fg-1);margin:34px 0 28px;text-wrap:balance}
+  h1.huge{font-size:140px;font-weight:800;line-height:1;letter-spacing:-4px;margin:0}
+  h2.big{font-size:68px;font-weight:800;line-height:1.1;letter-spacing:-1px;margin:24px 0}
+  .lead{font-size:30px;line-height:1.55;color:var(--fg-2);font-weight:400;max-width:1100px}
+  .footer{position:absolute;left:0;right:0;bottom:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;font-size:18px;color:var(--fg-3);border-top:1px solid var(--line)}
+  .footer .wm{font-family:var(--font-serif);font-weight:800;letter-spacing:3px;color:var(--brand);font-size:22px}
+  .footer .slogan{font-family:var(--font-sans);color:var(--fg-3);letter-spacing:6px;font-size:15px}
+  .pageno{font-family:var(--font-mono);color:var(--fg-3)}
+
+  /* grid components */
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:56px}
+  .stat{padding:36px 32px;background:var(--brand-mist);border-radius:18px;border:1px solid var(--line)}
+  .stat .n{font-size:80px;font-weight:800;color:var(--brand);letter-spacing:-2px;line-height:1;font-family:var(--font-sans)}
+  .stat .l{font-size:22px;color:var(--fg-2);margin-top:14px;font-weight:500}
+  .stat .s{font-size:16px;color:var(--fg-3);margin-top:6px}
+
+  .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;margin-top:48px}
+  .feat{background:#fff;border-radius:20px;border:1px solid var(--line);padding:42px 36px;box-shadow:var(--shadow-sm)}
+  .feat .ic{width:60px;height:60px;border-radius:14px;background:var(--brand-soft);display:flex;align-items:center;justify-content:center;margin-bottom:24px}
+  .feat .t{font-size:30px;font-weight:700;color:var(--fg-1);margin-bottom:14px}
+  .feat .d{font-size:19px;line-height:1.6;color:var(--fg-3)}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;margin-top:80px;position:relative}
+  .steps::before{content:'';position:absolute;top:38px;left:5%;right:5%;height:2px;background:var(--brand-soft);z-index:0}
+  .step{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center}
+  .step .dot{width:76px;height:76px;border-radius:99px;background:#fff;border:2px solid var(--brand);display:flex;align-items:center;justify-content:center;color:var(--brand);font-size:30px;font-weight:800;font-family:var(--font-serif)}
+  .step.on .dot{background:linear-gradient(180deg,#3A86FF,#1E6FE0);border-color:transparent;color:#fff;box-shadow:0 12px 24px -8px rgba(30,111,224,.55)}
+  .step .lab{font-size:22px;font-weight:700;color:var(--fg-1);margin-top:24px}
+  .step .sub{font-size:16px;color:var(--fg-3);margin-top:6px;line-height:1.4}
+
+  /* hero */
+  .hero{position:absolute;inset:0;display:flex}
+  .hero .left{flex:1;display:flex;flex-direction:column;justify-content:center;padding:120px 100px 120px 140px}
+  .hero .right{width:760px;background:linear-gradient(135deg,#1A3C5C 0%,#2C5985 60%,#1E6FE0 100%);position:relative;overflow:hidden}
+  .hero .right::before{content:'';position:absolute;inset:-200px;background:radial-gradient(circle at 30% 30%,rgba(106,176,204,.5),transparent 60%)}
+  .hero .right img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;mix-blend-mode:luminosity;opacity:.7}
+  .hero .right .ribbon{position:absolute;top:60%;right:60px;color:#fff;font-family:var(--font-serif);font-weight:800;font-size:124px;letter-spacing:8px;line-height:1;writing-mode:vertical-rl;text-orientation:mixed;opacity:.16}
+  .hero .right .stack{position:absolute;bottom:80px;left:60px;right:60px;color:#fff}
+  .hero .right .stack .tag{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);padding:10px 18px;border-radius:99px;font-size:18px;font-weight:500;backdrop-filter:blur(2px)}
+  .hero .right .stack .title{font-size:42px;font-weight:700;margin-top:24px;line-height:1.25}
+
+  /* split */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:60px;align-items:start}
+
+  /* phone mock */
+  .phone-mock{width:420px;height:840px;border-radius:54px;background:#0F1F3A;padding:14px;box-shadow:0 60px 120px -40px rgba(15,31,58,.5);border:8px solid #0F1F3A;position:relative}
+  .phone-mock .screen{width:100%;height:100%;background:var(--bg-page);border-radius:42px;overflow:hidden;position:relative;display:flex;flex-direction:column}
+  .phone-mock .notch{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:120px;height:32px;border-radius:99px;background:#0F1F3A;z-index:10}
+
+  /* quote */
+  .quote-mark{font-family:var(--font-serif);font-size:280px;color:var(--brand);opacity:.18;line-height:1;font-weight:800}
+  .quote-text{font-size:64px;font-weight:700;line-height:1.3;color:var(--fg-1);letter-spacing:-.5px;margin-top:-40px;max-width:1500px}
+
+  /* dark cover */
+  .cover-dark{background:linear-gradient(135deg,#0A1F40 0%,#0A4FB8 50%,#1E6FE0 100%);color:#fff;position:relative}
+  .cover-dark::after{content:'';position:absolute;inset:0;background:
+    radial-gradient(circle at 80% 20%,rgba(106,176,204,.35),transparent 50%),
+    radial-gradient(circle at 20% 80%,rgba(30,111,224,.5),transparent 50%);pointer-events:none}
+  .cover-dark .pad{position:relative;z-index:2}
+  .cover-dark .eyebrow{color:#9CC8FF}
+  .cover-dark .eyebrow::before{background:#9CC8FF}
+  .cover-dark h1.big,.cover-dark .lead{color:#fff}
+  .cover-dark .lead{color:rgba(255,255,255,.85)}
+
+  /* TOC */
+  .toc{display:grid;grid-template-columns:repeat(2,1fr);gap:28px 80px;margin-top:60px}
+  .toc-item{display:flex;align-items:baseline;gap:24px;padding:22px 0;border-bottom:1px solid var(--line)}
+  .toc-item .n{font-family:var(--font-serif);font-size:36px;font-weight:800;color:var(--brand);width:80px;letter-spacing:2px}
+  .toc-item .t{font-size:32px;font-weight:600;color:var(--fg-1);flex:1}
+  .toc-item .s{font-size:18px;color:var(--fg-3)}
+
+  /* coverage list */
+  .coverage{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+  .cov{display:flex;align-items:center;gap:18px;padding:24px 26px;background:var(--bg-app);border-radius:14px;border:1px solid var(--line)}
+  .cov .ck{width:32px;height:32px;border-radius:99px;background:var(--brand);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .cov .name{font-size:22px;font-weight:600;color:var(--fg-1)}
+  .cov .price{font-size:16px;color:var(--fg-3);margin-top:3px}
+
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:60px}
+  .contact-card{background:#fff;border-radius:24px;padding:48px;border:1px solid var(--line);box-shadow:var(--shadow-sm);display:flex;gap:36px;align-items:center}
+  .contact-card img{width:200px;height:200px;border-radius:12px;border:1px solid var(--line)}
+  .contact-card .l{font-size:18px;color:var(--fg-3);letter-spacing:2px}
+  .contact-card .v{font-size:36px;font-weight:700;color:var(--fg-1);margin-top:8px;line-height:1.3}
+  .contact-card .meta{font-size:18px;color:var(--fg-3);margin-top:12px}
+
+  /* photo bleed */
+  .photo-bleed{position:absolute;inset:0}
+  .photo-bleed img{width:100%;height:100%;object-fit:cover}
+  .photo-bleed::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,31,58,.55) 0%,rgba(10,79,184,.6) 100%)}
+
+  /* numbered card */
+  .num-card{background:#fff;border-radius:20px;padding:48px 40px;border:1px solid var(--line)}
+  .num-card .n{font-family:var(--font-serif);font-size:96px;font-weight:800;color:var(--brand);line-height:1;letter-spacing:-2px}
+  .num-card .t{font-size:30px;font-weight:700;color:var(--fg-1);margin-top:20px}
+  .num-card .d{font-size:19px;color:var(--fg-3);margin-top:14px;line-height:1.6}
+</style>
+</head>
+<body>
+
+<deck-stage>
+
+<!-- 1. Cover -->
+<section data-screen-label="01 Cover" class="cover-dark">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column;justify-content:space-between">
+    <div style="display:flex;align-items:center;gap:18px">
+      <div style="background:#fff;padding:10px 22px;border-radius:8px"><img src="../assets/logo-cicada-full.jpg" style="height:48px;display:block"/></div>
+      <div style="font-size:18px;color:rgba(255,255,255,.7);letter-spacing:8px">DENTAL INSTRUMENT REPAIR</div>
+    </div>
+    <div>
+      <div class="eyebrow">Brand & Service Overview</div>
+      <h1 class="big" style="font-size:128px">追求极致稳定性<br/><span style="color:#9CC8FF">守护每一次诊疗</span></h1>
+      <div class="lead" style="font-size:32px">佛山市思科达医疗器械 · 牙科精密仪器检修服务体系</div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;color:rgba(255,255,255,.7);font-size:18px">
+      <div>2026 · 售后服务白皮书</div>
+      <div style="font-family:var(--font-mono);letter-spacing:2px">CICADA / 思科达</div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. TOC -->
+<section data-screen-label="02 TOC">
+  <div class="pad" style="flex:1">
+    <div class="eyebrow">Contents · 目录</div>
+    <h1 class="big">我们将谈到</h1>
+    <div class="toc">
+      <div class="toc-item"><div class="n">01</div><div><div class="t">关于思科达</div><div class="s">十年专注牙科精密器械维保</div></div></div>
+      <div class="toc-item"><div class="n">02</div><div><div class="t">服务范围</div><div class="s">9 大模块 · 全品类覆盖</div></div></div>
+      <div class="toc-item"><div class="n">03</div><div><div class="t">维修流程</div><div class="s">从报修到回寄 6 步闭环</div></div></div>
+      <div class="toc-item"><div class="n">04</div><div><div class="t">服务承诺</div><div class="s">质保 · 时效 · 配件原厂</div></div></div>
+      <div class="toc-item"><div class="n">05</div><div><div class="t">微信小程序</div><div class="s">线上自助 · 24h 进度可查</div></div></div>
+      <div class="toc-item"><div class="n">06</div><div><div class="t">联系我们</div><div class="s">8 大区域 · 全国覆盖</div></div></div>
+    </div>
+  </div>
+  <div class="footer"><div class="wm">CICADA</div><div class="slogan">追 求 极 致 稳 定 性</div><div class="pageno">02 / 12</div></div>
+</section>
+
+<!-- 3. About — photo + stats -->
+<section data-screen-label="03 About">
+  <div class="hero">
+    <div class="left">
+      <div class="eyebrow">01 · About</div>
+      <h1 class="big" style="font-size:88px">十年匠心<br/>守护诊疗安全</h1>
+      <div class="lead">思科达医疗专注于牙科精密器械的检修、维护与备件供应，服务覆盖全国 2000+ 口腔机构。我们致力于为齿科机构提供精准、稳定、可追溯的售后体验。</div>
+      <div class="stat-grid" style="grid-template-columns:repeat(4,1fr);margin-top:64px">
+        <div class="stat"><div class="n">10+</div><div class="l">年专业经验</div><div class="s">深耕牙科精密器械</div></div>
+        <div class="stat"><div class="n">2000+</div><div class="l">合作机构</div><div class="s">遍布全国</div></div>
+        <div class="stat"><div class="n">24h</div><div class="l">响应时效</div><div class="s">下单即排期</div></div>
+        <div class="stat"><div class="n">99.2%</div><div class="l">一次修复率</div><div class="s">原厂配件 · 出厂调校</div></div>
+      </div>
+    </div>
+    <div class="right">
+      <img src="../assets/photo-building.jpg" alt="CICADA HQ"/>
+      <div class="ribbon">CICADA</div>
+      <div class="stack">
+        <div class="tag"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="3" fill="#fff"/></svg> 佛山总部 / 思科达医疗</div>
+        <div class="title">广东 · 佛山<br/>专属维保产线 + 自营售后</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Service scope -->
+<section data-screen-label="04 Service Scope">
+  <div class="pad" style="flex:1">
+    <div class="eyebrow">02 · Service Scope</div>
+    <h1 class="big">9 大服务模块 · 覆盖整条诊疗链</h1>
+    <div class="lead" style="font-size:24px">从牙科手机到 CBCT 大型设备，从故障检修到原厂配件，思科达提供一站式售后。</div>
+    <div class="feature-grid" style="grid-template-columns:repeat(3,1fr);margin-top:60px">
+      <div class="feat">
+        <div class="ic"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="1.6"><path d="M14 4l3 3-7 7-3-3 7-7zM6 14l-2 6 6-2-4-4zM16 16l4 4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="t">立即报修</div>
+        <div class="d">在线提交故障描述，自动派单到对应工程师，2 小时内回复。</div>
+      </div>
+      <div class="feat">
+        <div class="ic"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg></div>
+        <div class="t">进度追踪</div>
+        <div class="d">6 节点全流程透明：寄出 · 签收 · 检测 · 维修 · 回寄 · 完成。</div>
+      </div>
+      <div class="feat">
+        <div class="ic"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="1.6"><path d="M5 4h10l4 4v12H5V4z"/><path d="M15 4v4h4M8 12h8M8 16h5" stroke-linecap="round"/></svg></div>
+        <div class="t">故障自查</div>
+        <div class="d">分品类的排查向导，常见故障 80% 可现场自助处理。</div>
+      </div>
+      <div class="feat">
+        <div class="ic"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="1.6"><path d="M5 4h10a3 3 0 013 3v13H8a3 3 0 01-3-3V4z"/><path d="M9 9h6M9 13h4" stroke-linecap="round"/></svg></div>
+        <div class="t">操作教程</div>
+        <div class="d">日常保养、消毒灭菌、油雾润滑五类视频教程。</div>
+      </div>
+      <div class="feat">
+        <div class="ic"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4" stroke-linecap="round"/></svg></div>
+        <div class="t">质保政策</div>
+        <div class="d">出厂 12 个月整机质保，维修件 90 天再保。</div>
+      </div>
+      <div class="feat">
+        <div class="ic"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="1.6" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3z"/><path d="M9 8h6M9 12h6M9 16h4" stroke-linecap="round"/></svg></div>
+        <div class="t">电子发票</div>
+        <div class="d">维修完成自动开具，邮箱推送 + 微信存档。</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><div class="wm">CICADA</div><div class="slogan">追 求 极 致 稳 定 性</div><div class="pageno">04 / 12</div></div>
+</section>
+
+<!-- 5. Process Steps -->
+<section data-screen-label="05 Process">
+  <div class="pad" style="flex:1">
+    <div class="eyebrow">03 · Repair Process</div>
+    <h1 class="big">从报修到回寄 · 6 步透明闭环</h1>
+    <div class="lead">每一节点都有微信小程序消息推送和签收凭证，全程可追溯。</div>
+    <div class="steps">
+      <div class="step on"><div class="dot">01</div><div class="lab">寄出</div><div class="sub">微信提交工单<br/>顺丰上门取件</div></div>
+      <div class="step on"><div class="dot">02</div><div class="lab">签收</div><div class="sub">总部仓库扫码<br/>录入工单号</div></div>
+      <div class="step on"><div class="dot">03</div><div class="lab">检测</div><div class="sub">工程师诊断<br/>出具检测报告</div></div>
+      <div class="step on"><div class="dot">04</div><div class="lab">维修</div><div class="sub">原厂配件更换<br/>仪器调校</div></div>
+      <div class="step"><div class="dot">05</div><div class="lab">回寄</div><div class="sub">出库扫描<br/>顺丰回寄</div></div>
+      <div class="step"><div class="dot">06</div><div class="lab">完成</div><div class="sub">签收确认<br/>开具发票</div></div>
+    </div>
+    <div style="margin-top:120px;display:grid;grid-template-columns:repeat(3,1fr);gap:36px">
+      <div class="num-card"><div class="n">2h</div><div class="t">接单回复</div><div class="d">工程师 2 小时内确认工单并联系。</div></div>
+      <div class="num-card"><div class="n">3–5d</div><div class="t">常规维修周期</div><div class="d">含来回快递 · 紧急加急可缩短至 48h。</div></div>
+      <div class="num-card"><div class="n">90d</div><div class="t">维修件再保</div><div class="d">同部位故障 90 天内免费返修。</div></div>
+    </div>
+  </div>
+  <div class="footer"><div class="wm">CICADA</div><div class="slogan">追 求 极 致 稳 定 性</div><div class="pageno">05 / 12</div></div>
+</section>
+
+<!-- 6. Coverage -->
+<section data-screen-label="06 Coverage">
+  <div class="pad" style="flex:1">
+    <div class="eyebrow">02.1 · Coverage</div>
+    <h1 class="big">支持的设备品类</h1>
+    <div class="lead">主流牙科精密器械全覆盖，含进口品牌 NSK / W&amp;H / Sirona / 卡瓦及国产主流型号。</div>
+    <div class="coverage">
+      <div class="cov"><div class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M4 12l5 5L20 6" stroke-linecap="round"/></svg></div><div><div class="name">牙科手机 · 高速</div><div class="price">¥180 起 · 整机调校</div></div></div>
+      <div class="cov"><div class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M4 12l5 5L20 6" stroke-linecap="round"/></svg></div><div><div class="name">牙科手机 · 低速</div><div class="price">¥150 起 · 含轴承更换</div></div></div>
+      <div class="cov"><div class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M4 12l5 5L20 6" stroke-linecap="round"/></svg></div><div><div class="name">超声洁牙机</div><div class="price">¥280 起 · 含工作尖</div></div></div>
+      <div class="cov"><div class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M4 12l5 5L20 6" stroke-linecap="round"/></svg></div><div><div class="name">光固化灯</div><div class="price">¥220 起 · LED 模组</div></div></div>
+      <div class="cov"><div class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M4 12l5 5L20 6" stroke-linecap="round"/></svg></div><div><div class="name">根管马达</div><div class="price">¥320 起 · 含校准</div></div></div>
+      <div class="cov"><div class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M4 12l5 5L20 6" stroke-linecap="round"/></svg></div><div><div class="name">根尖定位仪</div><div class="price">¥280 起 · 电极更换</div></div></div>
+      <div class="cov"><div class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M4 12l5 5L20 6" stroke-linecap="round"/></svg></div><div><div class="name">综合治疗台</div><div class="price">现场上门 · 报价面议</div></div></div>
+      <div class="cov"><div class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M4 12l5 5L20 6" stroke-linecap="round"/></svg></div><div><div class="name">高温灭菌器</div><div class="price">¥380 起 · 含密封圈</div></div></div>
+      <div class="cov"><div class="ck"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M4 12l5 5L20 6" stroke-linecap="round"/></svg></div><div><div class="name">CBCT · 数字 X 光</div><div class="price">原厂工程师 · 上门维保</div></div></div>
+    </div>
+  </div>
+  <div class="footer"><div class="wm">CICADA</div><div class="slogan">追 求 极 致 稳 定 性</div><div class="pageno">06 / 12</div></div>
+</section>
+
+<!-- 7. Big quote -->
+<section data-screen-label="07 Quote" style="background:var(--bg-app)">
+  <div class="padlg" style="flex:1;display:flex;flex-direction:column;justify-content:center">
+    <div class="quote-mark">"</div>
+    <div class="quote-text">器械稳定一分，<br/>医生信心多一分，<br/>患者体验好一分。</div>
+    <div style="margin-top:80px;display:flex;align-items:center;gap:24px">
+      <div style="width:6px;height:60px;background:var(--brand);border-radius:4px"></div>
+      <div>
+        <div style="font-size:26px;font-weight:700;color:var(--fg-1)">思科达售后理念</div>
+        <div style="font-size:20px;color:var(--fg-3);margin-top:4px">CICADA Service Philosophy · 2026</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><div class="wm">CICADA</div><div class="slogan">追 求 极 致 稳 定 性</div><div class="pageno">07 / 12</div></div>
+</section>
+
+<!-- 8. Mini-program intro -->
+<section data-screen-label="08 Mini Program" style="background:var(--bg-stage)">
+  <div class="hero">
+    <div class="left" style="padding:120px 100px 120px 140px">
+      <div class="eyebrow">05 · WeChat Mini Program</div>
+      <h1 class="big" style="font-size:88px">微信小程序<br/>把售后装进口袋</h1>
+      <div class="lead">扫码即用 · 无需下载 App · 师傅与客服的最短链路。所有流程线上化，进度推送到微信。</div>
+      <div style="margin-top:56px;display:flex;flex-direction:column;gap:22px;font-size:24px;color:var(--fg-1)">
+        <div style="display:flex;gap:18px;align-items:center"><div style="width:36px;height:36px;border-radius:99px;background:var(--brand-soft);display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="2.5"><path d="M4 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>3 步提交报修工单</div>
+        <div style="display:flex;gap:18px;align-items:center"><div style="width:36px;height:36px;border-radius:99px;background:var(--brand-soft);display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="2.5"><path d="M4 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>实时查看维修进度</div>
+        <div style="display:flex;gap:18px;align-items:center"><div style="width:36px;height:36px;border-radius:99px;background:var(--brand-soft);display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="2.5"><path d="M4 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>故障自查 + 视频教程</div>
+        <div style="display:flex;gap:18px;align-items:center"><div style="width:36px;height:36px;border-radius:99px;background:var(--brand-soft);display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="2.5"><path d="M4 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>一键联系专属客服</div>
+      </div>
+    </div>
+    <div class="right" style="background:linear-gradient(135deg,#E8F1FE 0%,#D7E3FA 100%);display:flex;align-items:center;justify-content:center;padding:80px">
+      <div class="phone-mock">
+        <div class="screen">
+          <div class="notch"></div>
+          <div style="height:88px"></div>
+          <div style="padding:18px;color:#fff;background:linear-gradient(180deg,#3A86FF,#1E6FE0);margin:14px;border-radius:14px;box-shadow:var(--shadow-brand)">
+            <div style="font-size:12px;opacity:.8">您好</div>
+            <div style="font-size:22px;font-weight:700;margin-top:2px">桂林口腔门诊</div>
+            <div style="margin-top:18px;display:flex;justify-content:space-between;align-items:flex-end">
+              <div><div style="font-size:11px;opacity:.85">维修中工单</div><div style="font-size:28px;font-weight:800;margin-top:2px">3</div></div>
+              <div style="background:rgba(255,255,255,.2);padding:6px 14px;border-radius:99px;font-size:11px">查看全部 ›</div>
+            </div>
+          </div>
+          <div style="margin:0 14px;background:#fff;border-radius:14px;padding:14px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><div style="width:3px;height:14px;background:var(--brand);border-radius:2px"></div><div style="font-size:15px;font-weight:700">基础服务</div></div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:44px;height:44px;background:var(--brand-soft);border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="1.6" stroke-linejoin="round"><path d="M14 4l3 3-7 7-3-3 7-7zM6 14l-2 6 6-2-4-4z" stroke-linecap="round"/></svg></div><div style="font-size:11.5px;color:var(--fg-1)">立即报修</div></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:44px;height:44px;background:var(--brand-soft);border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg></div><div style="font-size:11.5px;color:var(--fg-1)">进度查询</div></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:44px;height:44px;background:var(--brand-soft);border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="1.6"><path d="M5 4h10l4 4v12H5V4z"/><path d="M15 4v4h4" stroke-linecap="round"/></svg></div><div style="font-size:11.5px;color:var(--fg-1)">故障自查</div></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:44px;height:44px;background:var(--brand-soft);border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="1.6"><rect x="3" y="9" width="18" height="12" rx="1.5"/><path d="M3 13h18M12 9v12" stroke-linecap="round"/></svg></div><div style="font-size:11.5px;color:var(--fg-1)">调研有礼</div></div>
+            </div>
+          </div>
+          <div style="margin:14px 14px 0;background:#fff;border-radius:14px;padding:14px;font-size:13px;color:var(--fg-2)">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><div style="width:3px;height:14px;background:var(--brand);border-radius:2px"></div><div style="font-size:15px;font-weight:700;color:var(--fg-1)">当前进度</div></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0"><span>工单 DR-20260508-1147</span><span style="background:#E0F2FE;color:#0369A1;padding:2px 8px;border-radius:99px;font-size:11px">维修中</span></div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0;color:var(--fg-3);font-size:12px"><span>NSK Ti-Max Z95L</span><span>预计 2026-05-15 完成</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Photo full-bleed -->
+<section data-screen-label="09 Photo">
+  <div class="photo-bleed"><img src="../assets/photo-factory.jpg" alt="factory"/></div>
+  <div class="pad" style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;position:relative;z-index:1;color:#fff">
+    <div class="eyebrow" style="color:#9CC8FF">04 · Commitments</div>
+    <h1 class="big" style="color:#fff;font-size:96px;max-width:1400px">每一台仪器，<br/>都经过工程师双盲复检。</h1>
+    <div class="lead" style="color:rgba(255,255,255,.85);max-width:1100px">出厂前，由两位资质工程师独立验机；任一项不合格，整机返修不出货。</div>
+  </div>
+  <div class="footer" style="background:rgba(0,0,0,.4);border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.7)"><div class="wm" style="color:#fff">CICADA</div><div class="slogan">追 求 极 致 稳 定 性</div><div class="pageno">09 / 12</div></div>
+</section>
+
+<!-- 10. Commitments grid -->
+<section data-screen-label="10 Commitments">
+  <div class="pad" style="flex:1">
+    <div class="eyebrow">04 · Commitments</div>
+    <h1 class="big">写进合同的 4 项承诺</h1>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:64px">
+      <div class="num-card" style="padding:56px 48px"><div class="n">01</div><div class="t" style="font-size:36px">原厂配件 · 不混用副厂</div><div class="d" style="font-size:22px">所有更换配件均来自厂家授权渠道，工单内附配件追溯码。副厂件、翻新件零容忍。</div></div>
+      <div class="num-card" style="padding:56px 48px"><div class="n">02</div><div class="t" style="font-size:36px">2 小时接单 · 24 小时到场</div><div class="d" style="font-size:22px">在线工单 2 小时内由工程师确认；省内上门 24 小时到场，远程指导即时响应。</div></div>
+      <div class="num-card" style="padding:56px 48px"><div class="n">03</div><div class="t" style="font-size:36px">90 天再保 · 同部位免费</div><div class="d" style="font-size:22px">维修后 90 天内同一故障部位再次损坏，免人工 · 免配件 · 免运费。</div></div>
+      <div class="num-card" style="padding:56px 48px"><div class="n">04</div><div class="t" style="font-size:36px">透明报价 · 维修前确认</div><div class="d" style="font-size:22px">检测报告 + 维修预算在动工前微信发送，客户确认后再开始作业。</div></div>
+    </div>
+  </div>
+  <div class="footer"><div class="wm">CICADA</div><div class="slogan">追 求 极 致 稳 定 性</div><div class="pageno">10 / 12</div></div>
+</section>
+
+<!-- 11. Contact -->
+<section data-screen-label="11 Contact" style="background:var(--bg-app)">
+  <div class="pad" style="flex:1">
+    <div class="eyebrow">06 · Contact</div>
+    <h1 class="big">联系思科达</h1>
+    <div class="lead">8 大区域专属服务经理 · 全国统一服务热线 7×12 小时在线。</div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <img src="../assets/qr-wechat.jpg"/>
+        <div>
+          <div class="l">WECHAT · 客服微信</div>
+          <div class="v">扫一扫<br/>添加专属服务经理</div>
+          <div class="meta">长按识别 · 一对一售后</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <img src="../assets/qr-official-wechat.jpg"/>
+        <div>
+          <div class="l">OFFICIAL · 公众号</div>
+          <div class="v">CICADA 思科达<br/>关注获取教程</div>
+          <div class="meta">产品 · 政策 · 视频教程</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:64px;background:#fff;border-radius:24px;padding:48px;border:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;box-shadow:var(--shadow-sm)">
+      <div>
+        <div style="font-size:18px;color:var(--fg-3);letter-spacing:2px">HOTLINE · 服务热线</div>
+        <div style="font-size:64px;font-weight:800;color:var(--brand);margin-top:8px;font-family:var(--font-sans);letter-spacing:1px">0757-85775667</div>
+        <div style="font-size:20px;color:var(--fg-3);margin-top:8px">工作时间 9:00 - 18:00 · 周一至周六</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:18px;color:var(--fg-3);letter-spacing:2px">HEADQUARTERS</div>
+        <div style="font-size:26px;font-weight:700;color:var(--fg-1);margin-top:8px">广东省佛山市</div>
+        <div style="font-size:18px;color:var(--fg-3);margin-top:4px">佛山市思科达医疗器械有限公司</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><div class="wm">CICADA</div><div class="slogan">追 求 极 致 稳 定 性</div><div class="pageno">11 / 12</div></div>
+</section>
+
+<!-- 12. Closing -->
+<section data-screen-label="12 Closing" class="cover-dark">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
+    <div style="font-family:var(--font-serif);font-size:240px;font-weight:800;color:#fff;letter-spacing:24px;line-height:1">CICADA</div>
+    <div style="font-size:44px;font-weight:700;color:#9CC8FF;margin-top:24px;letter-spacing:8px">思 科 达 医 疗</div>
+    <div style="width:80px;height:3px;background:#9CC8FF;margin:48px auto;border-radius:2px"></div>
+    <div style="font-size:32px;color:rgba(255,255,255,.85);letter-spacing:8px;font-weight:300">追 求 极 致 稳 定 性</div>
+    <div style="margin-top:80px;font-size:18px;color:rgba(255,255,255,.55);letter-spacing:4px">THANK YOU · 谢 谢 聆 听</div>
+  </div>
+</section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+</body>
+</html>

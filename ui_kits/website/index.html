@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"/>
+<title>CICADA 思科达 · 牙科精密器械检修</title>
+<meta name="viewport" content="width=1440"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../../colors_and_type.css"/>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#fff;color:var(--fg-1);font-family:var(--font-sans);font-size:17px;line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none}
+  .container{max-width:1280px;margin:0 auto;padding:0 40px}
+
+  /* === NAV === */
+  .nav{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:76px;padding:0 40px;max-width:1280px;margin:0 auto}
+  .nav-brand{display:flex;align-items:center;gap:14px}
+  .nav-brand img{height:34px}
+  .nav-brand .sep{width:1px;height:24px;background:var(--line)}
+  .nav-brand .tag{font-size:13px;color:var(--fg-3);letter-spacing:2px}
+  .nav-links{display:flex;align-items:center;gap:36px;font-size:15px;font-weight:500;color:var(--fg-2)}
+  .nav-links a{position:relative;padding:8px 0;transition:color .15s}
+  .nav-links a:hover{color:var(--brand)}
+  .nav-links a.active{color:var(--brand)}
+  .nav-links a.active::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:var(--brand);border-radius:2px}
+  .nav-cta{display:flex;gap:12px;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:8px;border-radius:99px;font-weight:600;letter-spacing:.3px;transition:transform .15s,box-shadow .15s}
+  .btn-primary{background:linear-gradient(180deg,#3A86FF,#1E6FE0);color:#fff;padding:12px 22px;font-size:15px;box-shadow:0 8px 18px -6px rgba(30,111,224,.45)}
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 12px 24px -8px rgba(30,111,224,.55)}
+  .btn-ghost{background:transparent;color:var(--brand);border:1px solid #BFD6F7;padding:11px 22px;font-size:15px}
+  .btn-ghost:hover{background:var(--brand-soft)}
+  .btn-deep{background:linear-gradient(180deg,#2A6CD3,#0A4FB8);color:#fff;padding:16px 32px;font-size:17px;box-shadow:var(--shadow-brand)}
+  .btn-lg{padding:18px 36px;font-size:18px}
+
+  /* === HERO === */
+  .hero{position:relative;padding:80px 0 120px;background:radial-gradient(1200px 600px at 50% -10%,#DCE9FA 0%,transparent 60%),#fff;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:80px;align-items:center}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:14px;font-weight:600;color:var(--brand);letter-spacing:3px;text-transform:uppercase;background:var(--brand-soft);padding:8px 16px;border-radius:99px}
+  .hero h1{font-size:76px;font-weight:800;line-height:1.05;letter-spacing:-2px;margin:28px 0 24px;color:var(--fg-1);text-wrap:balance}
+  .hero h1 .accent{color:var(--brand);position:relative;display:inline-block}
+  .hero h1 .accent::after{content:'';position:absolute;left:0;right:0;bottom:8px;height:14px;background:var(--brand-soft);z-index:-1;border-radius:4px}
+  .hero p.lead{font-size:21px;line-height:1.6;color:var(--fg-2);max-width:560px;margin:0 0 36px}
+  .hero-ctas{display:flex;gap:16px;align-items:center;margin-bottom:48px}
+  .hero-trust{display:flex;gap:36px;border-top:1px solid var(--line);padding-top:32px;max-width:540px}
+  .trust-item .n{font-size:32px;font-weight:800;color:var(--fg-1);letter-spacing:-.5px;line-height:1}
+  .trust-item .l{font-size:13px;color:var(--fg-3);margin-top:6px}
+
+  /* hero visual */
+  .hero-visual{position:relative;height:560px}
+  .hero-photo{position:absolute;inset:0;border-radius:24px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(15,31,58,.25)}
+  .hero-photo img{width:100%;height:100%;object-fit:cover}
+  .hero-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,46,102,.3) 0%,rgba(10,79,184,.5) 100%)}
+  .hero-badge{position:absolute;background:#fff;border-radius:18px;box-shadow:0 16px 40px -8px rgba(15,31,58,.18);padding:20px 22px;display:flex;align-items:center;gap:14px}
+  .hero-badge .ic{width:48px;height:48px;border-radius:14px;background:var(--brand-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .hero-badge .t{font-size:15px;font-weight:700;color:var(--fg-1)}
+  .hero-badge .s{font-size:12px;color:var(--fg-3);margin-top:2px}
+  .hero-badge.b1{top:40px;left:-40px;animation:float 6s ease-in-out infinite}
+  .hero-badge.b2{bottom:60px;right:-30px;animation:float 7s ease-in-out infinite -2s}
+  .hero-badge.b3{bottom:200px;left:-30px;animation:float 8s ease-in-out infinite -4s}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+  /* === SECTIONS === */
+  section{padding:120px 0}
+  .section-head{text-align:center;margin-bottom:72px}
+  .section-eyebrow{font-size:14px;font-weight:600;color:var(--brand);letter-spacing:4px;text-transform:uppercase;margin-bottom:18px}
+  .section-head h2{font-size:54px;font-weight:800;letter-spacing:-1px;line-height:1.15;margin:0 0 18px;color:var(--fg-1)}
+  .section-head p{font-size:19px;color:var(--fg-3);max-width:680px;margin:0 auto}
+
+  /* logo strip */
+  .logo-strip{background:var(--bg-app);padding:60px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .logo-strip .lbl{text-align:center;font-size:13px;font-weight:600;letter-spacing:3px;color:var(--fg-3);margin-bottom:32px}
+  .logo-strip ul{list-style:none;padding:0;margin:0;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap}
+  .logo-strip li{font-family:var(--font-serif);font-weight:800;font-size:28px;color:var(--fg-3);letter-spacing:2px;opacity:.7}
+  .logo-strip li.cn{font-family:var(--font-sans);font-weight:700;font-size:22px;letter-spacing:1px}
+
+  /* === SERVICES GRID === */
+  .services{background:var(--bg-app)}
+  .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .svc{background:#fff;border-radius:20px;padding:36px;border:1px solid var(--line);transition:transform .2s,box-shadow .2s,border-color .2s}
+  .svc:hover{transform:translateY(-4px);box-shadow:0 24px 48px -16px rgba(30,111,224,.18);border-color:#BFD6F7}
+  .svc .ic{width:56px;height:56px;border-radius:14px;background:var(--brand-soft);display:flex;align-items:center;justify-content:center;margin-bottom:24px}
+  .svc.featured{background:linear-gradient(165deg,#1E6FE0 0%,#0A4FB8 100%);color:#fff;border-color:transparent}
+  .svc.featured .ic{background:rgba(255,255,255,.18)}
+  .svc.featured h3,.svc.featured p,.svc.featured .arrow{color:#fff}
+  .svc h3{font-size:24px;font-weight:700;letter-spacing:-.3px;margin:0 0 12px;color:var(--fg-1)}
+  .svc p{font-size:16px;line-height:1.65;color:var(--fg-3);margin:0 0 24px}
+  .svc .arrow{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--brand)}
+
+  /* === PROCESS === */
+  .process{background:#fff;position:relative;overflow:hidden}
+  .process::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
+  .proc-timeline{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;position:relative;margin-top:40px}
+  .proc-timeline::before{content:'';position:absolute;top:30px;left:6%;right:6%;height:2px;background:linear-gradient(90deg,var(--brand) 0%,var(--brand) 60%,var(--brand-soft) 60%,var(--brand-soft) 100%)}
+  .proc-step{position:relative;text-align:center;display:flex;flex-direction:column;align-items:center}
+  .proc-step .dot{width:60px;height:60px;border-radius:99px;background:#fff;border:2px solid var(--brand);display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:22px;font-weight:800;color:var(--brand);z-index:1}
+  .proc-step.done .dot{background:linear-gradient(180deg,#3A86FF,#1E6FE0);border-color:transparent;color:#fff;box-shadow:0 8px 16px -4px rgba(30,111,224,.4)}
+  .proc-step .lab{font-size:17px;font-weight:700;color:var(--fg-1);margin-top:20px}
+  .proc-step .sub{font-size:13px;color:var(--fg-3);margin-top:4px;line-height:1.5}
+
+  /* === STATS BAND === */
+  .stats-band{background:linear-gradient(135deg,#0A1F40 0%,#0A4FB8 50%,#1E6FE0 100%);color:#fff;padding:96px 0;position:relative;overflow:hidden}
+  .stats-band::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(106,176,204,.3),transparent 50%),radial-gradient(circle at 20% 80%,rgba(30,111,224,.5),transparent 50%);pointer-events:none}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:48px;position:relative}
+  .st .n{font-size:80px;font-weight:800;letter-spacing:-2px;line-height:1;color:#fff;font-family:var(--font-sans)}
+  .st .n .u{font-size:32px;font-weight:600;color:#9CC8FF;margin-left:6px}
+  .st .l{font-size:17px;color:rgba(255,255,255,.85);margin-top:14px;font-weight:500}
+  .st .s{font-size:14px;color:rgba(255,255,255,.6);margin-top:4px}
+
+  /* === ABOUT BLOCK === */
+  .about{padding:120px 0;background:#fff}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+  .about-photo{border-radius:24px;overflow:hidden;position:relative;aspect-ratio:4/5;box-shadow:0 30px 60px -20px rgba(15,31,58,.25)}
+  .about-photo img{width:100%;height:100%;object-fit:cover}
+  .about-photo .badge{position:absolute;bottom:28px;left:28px;right:28px;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-radius:14px;padding:18px 22px;display:flex;align-items:center;gap:16px}
+  .about-photo .badge .wm{font-family:var(--font-serif);font-weight:800;color:var(--brand);font-size:24px;letter-spacing:2px}
+  .about-photo .badge .t{font-size:13px;color:var(--fg-3);line-height:1.4}
+  .about h2{font-size:48px;font-weight:800;letter-spacing:-1px;line-height:1.15;margin:0 0 24px;color:var(--fg-1)}
+  .about p{font-size:18px;line-height:1.75;color:var(--fg-2);margin:0 0 22px}
+  .about ul.checks{list-style:none;padding:0;margin:32px 0;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .about ul.checks li{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500;color:var(--fg-1)}
+  .about ul.checks li .ck{width:24px;height:24px;border-radius:99px;background:var(--brand);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+  /* === TESTIMONIALS === */
+  .testimonials{background:var(--bg-app)}
+  .tm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .tm{background:#fff;border-radius:20px;padding:32px;border:1px solid var(--line)}
+  .tm .stars{color:#F59E0B;font-size:18px;letter-spacing:2px;margin-bottom:18px}
+  .tm .q{font-size:17px;line-height:1.65;color:var(--fg-1);margin:0 0 24px}
+  .tm .author{display:flex;align-items:center;gap:14px;padding-top:20px;border-top:1px solid var(--line)}
+  .tm .av{width:44px;height:44px;border-radius:99px;background:linear-gradient(135deg,#3A86FF,#0A4FB8);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px}
+  .tm .name{font-size:15px;font-weight:700;color:var(--fg-1)}
+  .tm .role{font-size:13px;color:var(--fg-3);margin-top:2px}
+
+  /* === CTA BAND === */
+  .cta-band{padding:120px 0;background:radial-gradient(900px 500px at 50% 0%,#E8F1FE 0%,transparent 70%),#fff}
+  .cta-card{background:linear-gradient(135deg,#0A1F40 0%,#1E6FE0 100%);border-radius:32px;padding:80px;text-align:center;color:#fff;position:relative;overflow:hidden;box-shadow:0 40px 80px -20px rgba(10,79,184,.4)}
+  .cta-card::before,.cta-card::after{content:'';position:absolute;border-radius:99px;pointer-events:none}
+  .cta-card::before{width:400px;height:400px;background:radial-gradient(circle,rgba(106,176,204,.3),transparent 70%);top:-200px;right:-150px}
+  .cta-card::after{width:300px;height:300px;background:radial-gradient(circle,rgba(30,111,224,.4),transparent 70%);bottom:-150px;left:-100px}
+  .cta-card .inner{position:relative}
+  .cta-card h2{font-size:54px;font-weight:800;letter-spacing:-1px;margin:0 0 20px}
+  .cta-card p{font-size:20px;color:rgba(255,255,255,.85);max-width:600px;margin:0 auto 40px}
+  .cta-card .row{display:flex;gap:16px;justify-content:center;align-items:center}
+  .btn-white{background:#fff;color:var(--brand);padding:18px 36px;font-size:17px;font-weight:700;border-radius:99px}
+  .btn-white-ghost{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.3);padding:17px 36px;font-size:17px;border-radius:99px}
+
+  /* === FOOTER === */
+  footer{background:#0F1F3A;color:rgba(255,255,255,.7);padding:80px 0 32px}
+  .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:60px;margin-bottom:56px}
+  .footer-brand .wm{font-family:var(--font-serif);font-weight:800;color:#fff;font-size:36px;letter-spacing:4px}
+  .footer-brand .cn{font-size:16px;color:#9CC8FF;letter-spacing:4px;margin-top:4px}
+  .footer-brand p{margin:20px 0;font-size:14px;line-height:1.7;color:rgba(255,255,255,.55);max-width:340px}
+  .footer-brand .qr{display:flex;gap:14px;margin-top:24px}
+  .footer-brand .qr img{width:88px;height:88px;border-radius:8px}
+  .footer-col h4{color:#fff;font-size:14px;font-weight:700;letter-spacing:1px;margin:0 0 20px}
+  .footer-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px}
+  .footer-col a{font-size:14px;color:rgba(255,255,255,.6);transition:color .15s}
+  .footer-col a:hover{color:#9CC8FF}
+  .footer-bar{padding-top:28px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:center;font-size:13px;color:rgba(255,255,255,.5)}
+  .footer-bar .right{display:flex;gap:24px}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <img src="../../assets/logo-cicada-full.jpg" alt="CICADA"/>
+      <div class="sep"></div>
+      <div class="tag">牙 科 精 密 检 修</div>
+    </div>
+    <nav class="nav-links">
+      <a href="#" class="active">首页</a>
+      <a href="#services">服务范围</a>
+      <a href="#process">维修流程</a>
+      <a href="#about">关于我们</a>
+      <a href="#cases">客户案例</a>
+      <a href="#contact">联系我们</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="btn btn-ghost">登录</button>
+      <button class="btn btn-primary">立即报修</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="padding-top:60px">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow"><span style="width:6px;height:6px;background:var(--brand);border-radius:99px"></span> 十年专注 · 服务全球牙科专家</div>
+        <h1>守护诊疗稳定，<br/>是我们 <span class="accent">十年如一日</span><br/>的承诺。</h1>
+        <p class="lead">思科达医疗 (CICADA) 为牙科机构提供从牙科手机到 CBCT 的精密器械检修、维护与备件供应。原厂配件 · 透明报价 · 90 天再保。</p>
+        <div class="hero-ctas">
+          <button class="btn btn-deep btn-lg">立即提交报修工单 →</button>
+          <button class="btn btn-ghost btn-lg">查看服务报价</button>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item"><div class="n">10<span style="font-size:20px;color:var(--brand);margin-left:2px">+</span></div><div class="l">年专业经验</div></div>
+          <div class="trust-item"><div class="n">2000<span style="font-size:20px;color:var(--brand);margin-left:2px">+</span></div><div class="l">合作机构</div></div>
+          <div class="trust-item"><div class="n">99.2<span style="font-size:20px;color:var(--brand);margin-left:2px">%</span></div><div class="l">一次修复率</div></div>
+          <div class="trust-item"><div class="n">24<span style="font-size:20px;color:var(--brand);margin-left:2px">h</span></div><div class="l">响应时效</div></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-photo"><img src="../../assets/photo-factory.jpg" alt=""/></div>
+        <div class="hero-badge b1">
+          <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4" stroke-linecap="round"/></svg></div>
+          <div><div class="t">原厂配件</div><div class="s">追溯码可查</div></div>
+        </div>
+        <div class="hero-badge b2">
+          <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg></div>
+          <div><div class="t">24h 到场</div><div class="s">省内上门维修</div></div>
+        </div>
+        <div class="hero-badge b3">
+          <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="1.6"><path d="M5 12l5 5 9-9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div><div class="t">90 天再保</div><div class="s">同部位免费返修</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO STRIP -->
+<div class="logo-strip">
+  <div class="container">
+    <div class="lbl">服 务 主 流 牙 科 器 械 品 牌</div>
+    <ul>
+      <li>NSK</li>
+      <li>W&amp;H</li>
+      <li>SIRONA</li>
+      <li class="cn">卡瓦 KaVo</li>
+      <li class="cn">登士柏</li>
+      <li>MORITA</li>
+      <li class="cn">朗 力 福</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">CORE SERVICES · 服务范围</div>
+      <h2>9 大服务模块 · 覆盖整条诊疗链</h2>
+      <p>从在线报修到原厂配件、从故障自查到上门维保，思科达提供一站式售后体验。</p>
+    </div>
+    <div class="service-grid">
+      <div class="svc featured">
+        <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"><path d="M14 4l3 3-7 7-3-3 7-7zM6 14l-2 6 6-2-4-4z" stroke-linecap="round"/></svg></div>
+        <h3>立即报修</h3>
+        <p>在线 3 步提交工单，自动派单至对应工程师，2 小时内回复确认。</p>
+        <span class="arrow">提交工单 →</span>
+      </div>
+      <div class="svc">
+        <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg></div>
+        <h3>进度追踪</h3>
+        <p>6 节点全流程透明：寄出 · 签收 · 检测 · 维修 · 回寄 · 完成。</p>
+        <span class="arrow">查看工单 →</span>
+      </div>
+      <div class="svc">
+        <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="1.6"><path d="M5 4h10l4 4v12H5V4z"/><path d="M15 4v4h4M8 12h8M8 16h5" stroke-linecap="round"/></svg></div>
+        <h3>故障自查</h3>
+        <p>分品类的排查向导，常见故障 80% 可现场自助处理。</p>
+        <span class="arrow">开始自查 →</span>
+      </div>
+      <div class="svc">
+        <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="1.6"><path d="M5 4h10a3 3 0 013 3v13H8a3 3 0 01-3-3V4z"/><path d="M9 9h6M9 13h4" stroke-linecap="round"/></svg></div>
+        <h3>操作教程</h3>
+        <p>日常保养、消毒灭菌、油雾润滑五大类视频教程，资深技师讲解。</p>
+        <span class="arrow">观看视频 →</span>
+      </div>
+      <div class="svc">
+        <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4" stroke-linecap="round"/></svg></div>
+        <h3>质保政策</h3>
+        <p>出厂 12 个月整机质保 · 维修件 90 天再保 · 写进合同。</p>
+        <span class="arrow">政策详情 →</span>
+      </div>
+      <div class="svc">
+        <div class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E6FE0" stroke-width="1.6" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3z"/><path d="M9 8h6M9 12h6M9 16h4" stroke-linecap="round"/></svg></div>
+        <h3>电子发票</h3>
+        <p>维修完成自动开具，邮箱推送 + 微信存档，纸质发票可选。</p>
+        <span class="arrow">开票指引 →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">REPAIR PROCESS · 维修流程</div>
+      <h2>从报修到回寄 · 6 步透明闭环</h2>
+      <p>每一节点都有微信小程序消息推送和签收凭证，全程可追溯。</p>
+    </div>
+    <div class="proc-timeline">
+      <div class="proc-step done"><div class="dot">01</div><div class="lab">寄出</div><div class="sub">提交工单<br/>顺丰取件</div></div>
+      <div class="proc-step done"><div class="dot">02</div><div class="lab">签收</div><div class="sub">仓库扫码<br/>录入工单</div></div>
+      <div class="proc-step done"><div class="dot">03</div><div class="lab">检测</div><div class="sub">工程师诊断<br/>出报告</div></div>
+      <div class="proc-step done"><div class="dot">04</div><div class="lab">维修</div><div class="sub">原厂配件<br/>仪器调校</div></div>
+      <div class="proc-step"><div class="dot">05</div><div class="lab">回寄</div><div class="sub">出库扫描<br/>顺丰回寄</div></div>
+      <div class="proc-step"><div class="dot">06</div><div class="lab">完成</div><div class="sub">签收确认<br/>开具发票</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:80px">
+      <div style="background:var(--bg-app);border-radius:18px;padding:32px;border:1px solid var(--line)">
+        <div style="font-family:var(--font-serif);font-size:48px;font-weight:800;color:var(--brand);letter-spacing:-1px;line-height:1">2h</div>
+        <div style="font-size:19px;font-weight:700;color:var(--fg-1);margin-top:12px">接单回复</div>
+        <div style="font-size:15px;color:var(--fg-3);margin-top:8px;line-height:1.6">工程师 2 小时内确认工单并联系。</div>
+      </div>
+      <div style="background:var(--bg-app);border-radius:18px;padding:32px;border:1px solid var(--line)">
+        <div style="font-family:var(--font-serif);font-size:48px;font-weight:800;color:var(--brand);letter-spacing:-1px;line-height:1">3–5<span style="font-size:24px"> 天</span></div>
+        <div style="font-size:19px;font-weight:700;color:var(--fg-1);margin-top:12px">常规维修周期</div>
+        <div style="font-size:15px;color:var(--fg-3);margin-top:8px;line-height:1.6">含来回快递 · 紧急加急可缩短至 48 小时。</div>
+      </div>
+      <div style="background:var(--bg-app);border-radius:18px;padding:32px;border:1px solid var(--line)">
+        <div style="font-family:var(--font-serif);font-size:48px;font-weight:800;color:var(--brand);letter-spacing:-1px;line-height:1">90<span style="font-size:24px"> 天</span></div>
+        <div style="font-size:19px;font-weight:700;color:var(--fg-1);margin-top:12px">维修件再保</div>
+        <div style="font-size:15px;color:var(--fg-3);margin-top:8px;line-height:1.6">同部位故障 90 天内免费返修。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="st"><div class="n">2000<span class="u">+</span></div><div class="l">合作牙科机构</div><div class="s">遍布全国</div></div>
+      <div class="st"><div class="n">50<span class="u">000+</span></div><div class="l">检修工单</div><div class="s">累计完成</div></div>
+      <div class="st"><div class="n">99.2<span class="u">%</span></div><div class="l">一次修复率</div><div class="s">原厂配件 + 出厂调校</div></div>
+      <div class="st"><div class="n">10<span class="u">年</span></div><div class="l">行业深耕</div><div class="s">专注牙科精密器械</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-photo">
+        <img src="../../assets/photo-building.jpg" alt="CICADA HQ"/>
+        <div class="badge">
+          <div class="wm">CICADA</div>
+          <div class="t">佛山总部 · 思科达医疗器械<br/>专属维保产线 + 自营售后</div>
+        </div>
+      </div>
+      <div>
+        <div class="section-eyebrow" style="margin-bottom:18px">ABOUT CICADA · 关于我们</div>
+        <h2>十年匠心，<br/>守护每一次诊疗安全。</h2>
+        <p>思科达医疗 (CICADA / 佛山市思科达医疗器械有限公司) 致力于为齿科机构提供精准、稳定、可追溯的精密器械检修与售后服务。</p>
+        <p>我们的工程师团队均持有牙科器械维修资质，原厂配件全程追溯，所有出厂仪器须经两位工程师双盲复检——任一项不合格，整机返修不出货。</p>
+        <ul class="checks">
+          <li><div class="ck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M4 12l5 5L20 6" stroke-linecap="round"/></svg></div>原厂配件 · 不混用副厂</li>
+          <li><div class="ck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M4 12l5 5L20 6" stroke-linecap="round"/></svg></div>资质工程师 · 双盲复检</li>
+          <li><div class="ck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M4 12l5 5L20 6" stroke-linecap="round"/></svg></div>透明报价 · 维修前确认</li>
+          <li><div class="ck"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M4 12l5 5L20 6" stroke-linecap="round"/></svg></div>电子工单 · 全程可追溯</li>
+        </ul>
+        <button class="btn btn-primary btn-lg">了解更多 →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="cases">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">CLIENT VOICES · 客户反馈</div>
+      <h2>2000+ 牙科机构的共同选择</h2>
+      <p>来自全国合作诊所与口腔医院真实评价（部分署名经客户同意展示）。</p>
+    </div>
+    <div class="tm-grid">
+      <div class="tm">
+        <div class="stars">★★★★★</div>
+        <p class="q">"思科达的工程师很专业，NSK 手机寄出第 4 天就回来了，比厂家维修快一倍，价格还便宜近 30%。"</p>
+        <div class="author"><div class="av">林</div><div><div class="name">林医生</div><div class="role">桂林口腔门诊 · 院长</div></div></div>
+      </div>
+      <div class="tm">
+        <div class="stars">★★★★★</div>
+        <p class="q">"小程序上能看到完整的维修进度，每个节点都有推送，不用一直追问客服，很安心。"</p>
+        <div class="author"><div class="av">陈</div><div><div class="name">陈技师</div><div class="role">中山某口腔医院 · 设备科</div></div></div>
+      </div>
+      <div class="tm">
+        <div class="stars">★★★★★</div>
+        <p class="q">"维修后 60 天同部位出现问题，免费返修，没有任何借口和扯皮。这种售后态度在行业里很难得。"</p>
+        <div class="author"><div class="av">王</div><div><div class="name">王经理</div><div class="role">深圳某连锁诊所 · 采购</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="container">
+    <div class="cta-card">
+      <div class="inner">
+        <h2>器械出问题？<br/>3 步在线提交工单。</h2>
+        <p>2 小时内工程师确认，省内 24 小时上门，全国顺丰收发。立即体验思科达售后服务。</p>
+        <div class="row">
+          <button class="btn-white">立即提交报修 →</button>
+          <button class="btn-white-ghost">拨打 0757-85775667</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div style="background:#fff;padding:8px 14px;border-radius:6px;display:inline-block"><img src="../../assets/logo-cicada-full.jpg" style="height:30px;display:block"/></div>
+        <div class="cn" style="margin-top:14px">追 求 极 致 稳 定 性</div>
+        <p>佛山市思科达医疗器械有限公司<br/>Foshan CICADA Dental Instrument Co., LTD.<br/>地址：广东省佛山市</p>
+        <div class="qr">
+          <img src="../../assets/qr-wechat.jpg" alt="客服微信"/>
+          <img src="../../assets/qr-official-wechat.jpg" alt="公众号"/>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>服务</h4>
+        <ul>
+          <li><a href="#">立即报修</a></li>
+          <li><a href="#">进度查询</a></li>
+          <li><a href="#">故障自查</a></li>
+          <li><a href="#">操作教程</a></li>
+          <li><a href="#">质保政策</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>公司</h4>
+        <ul>
+          <li><a href="#">关于思科达</a></li>
+          <li><a href="#">产品中心</a></li>
+          <li><a href="#">新闻动态</a></li>
+          <li><a href="#">招贤纳士</a></li>
+          <li><a href="#">联系我们</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>联系</h4>
+        <ul>
+          <li style="color:#fff;font-size:18px;font-weight:700;letter-spacing:1px">0757-85775667</li>
+          <li style="color:rgba(255,255,255,.5);font-size:13px;margin-top:-4px">9:00 - 18:00 · 周一至周六</li>
+          <li style="margin-top:8px"><a href="#">微信客服</a></li>
+          <li><a href="#">区域销售经理</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div>© 2026 佛山市思科达医疗器械有限公司 · 粤 ICP 备 XXXXXXXX 号</div>
+      <div class="right">
+        <a href="#">隐私政策</a>
+        <a href="#">服务条款</a>
+        <a href="#">法律声明</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body></html>

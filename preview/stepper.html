@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  body{margin:0;padding:18px;background:#fff;font-family:var(--font-sans);color:var(--fg-1)}
+  .wrap{display:flex;align-items:center;gap:0;padding:6px 4px}
+  .step{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0}
+  .dot{width:14px;height:14px;border-radius:99px;background:#E4ECF7}
+  .dot.on{background:#1E6FE0;box-shadow:0 0 0 4px rgba(30,111,224,.12)}
+  .lab{font-size:10.5px;color:#94A3B8}
+  .lab.on{color:#1E6FE0}
+  .ln{flex:1;height:1.5px;background:#E4ECF7;margin-bottom:14px}
+  .ln.on{background:#1E6FE0}
+</style></head><body>
+<div class="wrap">
+  <div class="step"><div class="dot on"></div><div class="lab on">寄出</div></div>
+  <div class="ln on"></div>
+  <div class="step"><div class="dot on"></div><div class="lab on">签收</div></div>
+  <div class="ln on"></div>
+  <div class="step"><div class="dot on"></div><div class="lab on">检测</div></div>
+  <div class="ln on"></div>
+  <div class="step"><div class="dot on"></div><div class="lab on">维修</div></div>
+  <div class="ln"></div>
+  <div class="step"><div class="dot"></div><div class="lab">回寄</div></div>
+  <div class="ln"></div>
+  <div class="step"><div class="dot"></div><div class="lab">完成</div></div>
+</div>
+</body></html>
